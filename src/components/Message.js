@@ -1,7 +1,9 @@
 import React from 'react'
 
 const Message = () => {
-  <div>Hi</div>
-}
+  return(
+  <div></div>
+)}
+
 
 export default Message
