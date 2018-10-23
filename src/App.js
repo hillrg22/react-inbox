@@ -32,24 +32,25 @@ class App extends Component {
  }
 
   toggleStarred = (event, messageId) => {
-    console.log(messageId)
+    console.log("event",event,"id", messageId)
+    console.log("star power activated")
     //fetch patch
-    fetch("http://localhost:8082/api/messages", {
-      method: 'PATCH',
-      headers: {
-        "content-type":"application/json"
-      },
-      body: JSON.stringify({
-        messageIds: [messageId],
-        command:"star"
-      })
-    })
-      .then(response => response.json())
-      .then(newMessages =>{
-        this.setState({
-          messageData: newMessages
-        })
-      })
+    // fetch("http://localhost:8082/api/messages", {
+    //   method: 'PATCH',
+    //   headers: {
+    //     "content-type":"application/json"
+    //   },
+    //   body: JSON.stringify({
+    //     messageIds: [messageId],
+    //     command:"star"
+    //   })
+    // })
+    //   .then(response => response.json())
+    //   .then(newMessages =>{
+    //     this.setState({
+    //       messageData: newMessages
+    //     })
+    //   })
   }
 
 

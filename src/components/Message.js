@@ -17,7 +17,7 @@ const labelSpans = labels.map((label, i) =>{
           <input type="checkbox" defaultChecked={selected} />
         </div>
         <div className="col-xs-2">
-          <i className={starredClasses} onClick={() =>toggleStarred(id)}></i>
+          <i className={starredClasses} onClick={(e)=>toggleStarred(e,id)}></i>
         </div>
       </div>
     </div>

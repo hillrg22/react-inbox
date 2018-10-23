@@ -22,5 +22,4 @@ const MessageList = ({messageData, toggleStarred}) => {
 }
 
 
-
 export default MessageList
