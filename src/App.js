@@ -9,13 +9,14 @@ class App extends Component {
     super(props);
       this.state={
         messageData: [],
+        unreadCount: ''
       }
   }
   componentDidMount(){
     fetch('http://localhost:8082/api/messages')
     .then(res => res.json())
-    .then(data => {
-      this.setState({messageData: data})
+    .then(messages => {
+      this.setState({messageData: messages})
       console.log(this.state.messageData)
     })
   }
@@ -30,13 +31,35 @@ class App extends Component {
     this.setState({messageData: newMessages})
  }
 
+  toggleStarred = (event, messageId) => {
+    console.log(messageId)
+    //fetch patch
+    fetch("http://localhost:8082/api/messages", {
+      method: 'PATCH',
+      headers: {
+        "content-type":"application/json"
+      },
+      body: JSON.stringify({
+        messageIds: [messageId],
+        command:"star"
+      })
+    })
+      .then(response => response.json())
+      .then(newMessages =>{
+        this.setState({
+          messageData: newMessages
+        })
+      })
+  }
+
 
   render() {
     return (
       <div className="App">
         <Toolbar />
         <Compose />
-        <MessageList messageData={this.state.messageData} />
+        <MessageList toggleStarred={this.toggleStarred}
+                    messageData={this.state.messageData} />
       </div>
     );
   }
