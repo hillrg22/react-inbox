@@ -37,7 +37,6 @@ class App extends Component {
   }
 
   msgReadToggle = (e, id) => {
-    console.log("msg read toggle", id)
     const messages = this.state.messageData
     const newMessages = messages.map((message) => {
         if (message.id == id) message.read = true
@@ -65,6 +64,9 @@ class App extends Component {
       })
   }
 
+  // toggleSelected = (event, messageId) =>{
+  //
+  // }
 
   render() {
 
