@@ -10,18 +10,18 @@ const labelSpans = labels.map((label, i) =>{
 })
 
   return(
-  <div className={readClasses + selectedClass}>
+  <div className={readClasses + selectedClass} >
     <div className="col-xs-1">
       <div className="row">
         <div className="col-xs-2">
-          <input type="checkbox" defaultChecked={selected} />
+          <input type="checkbox" defaultChecked={selected}  />
         </div>
         <div className="col-xs-2">
           <i className={starredClasses} onClick={(e)=>toggleStarred(e,id)}></i>
         </div>
       </div>
     </div>
-    <div classname="col-xs-11">
+    <div classname="col-xs-11" onClick={(e)=>msgReadToggle(e,id)}>
       {labelSpans}
       <a href="#">{subject}</a>
     </div>

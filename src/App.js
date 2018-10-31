@@ -40,7 +40,7 @@ class App extends Component {
     console.log("msg read toggle", id)
     const messages = this.state.messageData
     const newMessages = messages.map((message) => {
-        if (message.id == id) message.read = !message.read
+        if (message.id == id) message.read = true
         return message
     })
     this.setState({messageData: newMessages})
