@@ -1,45 +1,46 @@
 import React from 'react'
 
-const Toolbar = () => {
+const Toolbar = ({composeToggle}) => {
   return(
-    <div className="row toolbar">
-      <div className="col-md-12">
-        <p className="pull-right">
-          <span className="badge badge">2</span>
-          unread messages
-        </p>
+    <div class="row toolbar">
+  <div class="col-md-12">
+    <p class="pull-right">
+      <span class="badge badge">2</span>
+      unread messages
+    </p>
 
-        <button className="btn btn-default">
-          <i className="fa fa-square-o"></i>
-        </button>
+    <a class="btn btn-danger">
+      <i onClick={composeToggle} class="fa fa-plus"></i>
+    </a>
 
-        <button className="btn btn-default" disabled="disabled">
-          Mark As Read
-        </button>
+    <button class="btn btn-default">
+      <i class="fa fa-minus-square-o"></i>
+    </button>
 
-        <button className="btn btn-default" disabled="disabled">
-          Mark As Unread
-        </button>
+    <button class="btn btn-default">Mark As Read</button>
 
-        <select className="form-control label-select" disabled="disabled">
-          <option>Apply label</option>
-          <option value="dev">dev</option>
-          <option value="personal">personal</option>
-          <option value="gschool">gschool</option>
-        </select>
+    <button class="btn btn-default">Mark As Unread</button>
 
-        <select className="form-control label-select" disabled="disabled">
-          <option>Remove label</option>
-          <option value="dev">dev</option>
-          <option value="personal">personal</option>
-          <option value="gschool">gschool</option>
-        </select>
+    <select class="form-control label-select">
+      <option>Apply label</option>
+      <option value="dev">dev</option>
+      <option value="personal">personal</option>
+      <option value="gschool">gschool</option>
+    </select>
 
-        <button className="btn btn-default" disabled="disabled">
-          <i className="fa fa-trash-o"></i>
-        </button>
-      </div>
-    </div>
+    <select class="form-control label-select">
+      <option>Remove label</option>
+      <option value="dev">dev</option>
+      <option value="personal">personal</option>
+      <option value="gschool">gschool</option>
+    </select>
+
+    <button class="btn btn-default">
+      <i class="fa fa-trash-o"></i>
+    </button>
+  </div>
+</div>
+
 )}
 
 

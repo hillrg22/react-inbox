@@ -2,7 +2,7 @@ import React from 'react'
 import Message from './Message'
 
 
-const MessageList = ({messageData, toggleStarred}) => {
+const MessageList = ({messageData, toggleStarred, msgReadToggle}) => {
   const messageComponents = messageData.map(message =>{
     return <Message key={message.id}
           id={message.id}
@@ -11,7 +11,8 @@ const MessageList = ({messageData, toggleStarred}) => {
           selected={message.selected}
           starred={message.starred}
           subject={message.subject}
-          toggleStarred={toggleStarred} />
+          toggleStarred={toggleStarred}
+          msgReadToggle={msgReadToggle}/>
   })
 
   return (
