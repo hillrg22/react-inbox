@@ -1,9 +1,11 @@
 import React from 'react'
 
-const Message = ({id, labels, read, selected, starred, subject, toggleStarred, msgReadToggle}) => {
+const Message = ({id, labels, read, selected, starred, subject, toggleStarred, msgReadToggle, toggleSelected}) => {
   const readClasses = read ? "row message read" : "row message unread"
   const selectedClass = selected ? " selected" : ""
   const starredClasses = starred ? "star fa fa-star" : "star fa fa-star-o"
+
+
 
 const labelSpans = labels.map((label, i) =>{
   return <span key={i} className="label label-warning">{label}</span>
@@ -14,7 +16,7 @@ const labelSpans = labels.map((label, i) =>{
     <div className="col-xs-1">
       <div className="row">
         <div className="col-xs-2">
-          <input type="checkbox" defaultChecked={selected}  />
+          <input type="checkbox" defaultChecked={selected} onClick={(e)=>toggleSelected(e,id)}  />
         </div>
         <div className="col-xs-2">
           <i className={starredClasses} onClick={(e)=>toggleStarred(e,id)}></i>

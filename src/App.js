@@ -26,6 +26,7 @@ class App extends Component {
   }
 
   composeMessage = () => {
+    console.log(this.state.messageData)
     const composeClicked = this.state.composeClicked
     if(composeClicked) {
       return <Compose/>
@@ -39,7 +40,7 @@ class App extends Component {
   msgReadToggle = (e, id) => {
     const messages = this.state.messageData
     const newMessages = messages.map((message) => {
-        if (message.id == id) message.read = true
+        if (message.id == id) {message.read = true}
         return message
     })
     this.setState({messageData: newMessages})
@@ -64,9 +65,16 @@ class App extends Component {
       })
   }
 
-  // toggleSelected = (event, messageId) =>{
-  //
-  // }
+  toggleSelected = (event, messageId) =>{
+    const selected = this.state.messageData.selected
+    const selectedMessages = this.state.messageData.map((message) => {
+      if (message.id == messageId) {
+        message.selected = !message.selected
+      }
+      return message
+    })
+    this.setState({messageData: selectedMessages})
+  }
 
   render() {
 
@@ -79,7 +87,9 @@ class App extends Component {
         {this.composeMessage()}
         <MessageList toggleStarred={this.toggleStarred}
                     messageData={this.state.messageData}
-                    msgReadToggle={this.msgReadToggle}/>
+                    msgReadToggle={this.msgReadToggle}
+                    toggleSelected={this.toggleSelected}
+                    />
       </div>
     );
   }
