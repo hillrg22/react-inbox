@@ -4,6 +4,8 @@ import './index.css';
 import MessageList from './components/MessageList'
 import Toolbar from './components/Toolbar'
 import Compose from './components/Compose'
+
+
 class App extends Component {
   constructor(props){
     super(props);
@@ -26,10 +28,9 @@ class App extends Component {
   }
 
   composeMessage = () => {
-    console.log(this.state.messageData)
     const composeClicked = this.state.composeClicked
     if(composeClicked) {
-      return <Compose/>
+      return <Compose onMessageSent={this.onMessageSent}/>
     }
   }
 
@@ -75,6 +76,23 @@ class App extends Component {
     })
     this.setState({messageData: selectedMessages})
   }
+
+  onMessageSent = (object) => {
+    fetch("http://localhost:8082/api/messages", {
+      method: 'POST',
+      headers: {
+        "content-type":"application/json"
+      },
+      body: JSON.stringify({object})
+    })
+      .then(response => response.json())
+      .then(newMessage =>{
+        this.setState({
+          messageData: this.state.messageData.concat(newMessage)
+        })
+      })
+  }
+
 
   render() {
 
