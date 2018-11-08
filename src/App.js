@@ -83,7 +83,7 @@ class App extends Component {
       headers: {
         "content-type":"application/json"
       },
-      body: JSON.stringify({object})
+      body: JSON.stringify(object)
     })
       .then(response => response.json())
       .then(newMessage =>{
