@@ -16,8 +16,6 @@ class App extends Component {
       }
   }
 
-
-
   componentDidMount(){
     fetch('http://localhost:8082/api/messages')
     .then(res => res.json())
@@ -90,6 +88,7 @@ class App extends Component {
           messageData: this.state.messageData.concat(newMessage)
         })
       })
+      this.setState({composeClicked: false})
   }
 
   findSelected = () => {
