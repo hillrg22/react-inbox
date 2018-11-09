@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Toolbar = ({composeToggle}) => {
+const Toolbar = ({composeToggle, onDelete}) => {
   return(
     <div className="row toolbar">
   <div className="col-md-12">
@@ -9,8 +9,9 @@ const Toolbar = ({composeToggle}) => {
       unread messages
     </p>
 
-    <a className="btn btn-danger">
-      <i onClick={composeToggle} className="fa fa-plus"></i>
+    <a onClick={composeToggle}
+      className="btn btn-danger">
+      <i  className="fa fa-plus"></i>
     </a>
 
     <button className="btn btn-default">
@@ -36,7 +37,8 @@ const Toolbar = ({composeToggle}) => {
     </select>
 
     <button className="btn btn-default">
-      <i className="fa fa-trash-o"></i>
+      <i className="fa fa-trash-o"
+          onClick={onDelete}></i>
     </button>
   </div>
 </div>

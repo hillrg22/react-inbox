@@ -23,7 +23,6 @@ class App extends Component {
     .then(res => res.json())
     .then(messages => {
       this.setState({messageData: messages})
-      console.log(this.state.messageData)
     })
   }
 
@@ -93,6 +92,37 @@ class App extends Component {
       })
   }
 
+  findSelected = () => {
+    console.log("findselected",this.state.messageData)
+    let messages = this.state.messageData.reduce((acc,current) =>{
+      if(current.selected){
+        acc.push(current.id)
+        return acc
+      }
+      else{ return acc}
+    }, []);
+      return messages
+  }
+
+  onDelete = (event) => {
+    let selectedMsgs = this.findSelected()
+    fetch("http://localhost:8082/api/messages", {
+      method: 'PATCH',
+      headers: {
+        "content-type":"application/json"
+      },
+      body: JSON.stringify({
+        messageIds: selectedMsgs,
+        command:"delete"
+      })
+    })
+    .then(response => response.json())
+    .then(newMessages =>{
+      this.setState({
+        messageData: newMessages
+      })
+    })
+  }
 
   render() {
 
@@ -101,6 +131,7 @@ class App extends Component {
         <Toolbar
         composeClicked = {this.state.composeClicked}
         composeToggle = {this.composeToggle}
+        onDelete= {this.onDelete}
         />
         {this.composeMessage()}
         <MessageList toggleStarred={this.toggleStarred}
