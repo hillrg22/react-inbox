@@ -12,7 +12,10 @@ class App extends Component {
       this.state={
         messageData: [],
         unreadCount: '',
-        composeClicked: false
+        composeClicked: false,
+        allSelected: false,
+        someSelected: true,
+        noneSelected: false
       }
   }
 
@@ -74,6 +77,11 @@ class App extends Component {
     this.setState({messageData: selectedMessages})
   }
 
+  selectDeselectAll = (event) =>{
+
+  }
+
+
   onMessageSent = (object) => {
     fetch("http://localhost:8082/api/messages", {
       method: 'POST',
@@ -100,6 +108,7 @@ class App extends Component {
       }
       else{ return acc}
     }, []);
+      console.log("selected messages",messages)
       return messages
   }
 
@@ -123,6 +132,50 @@ class App extends Component {
     })
   }
 
+
+  onMarkAsRead = (event) =>{
+    let selectedMsgs = this.findSelected()
+    fetch("http://localhost:8082/api/messages", {
+      method: 'PATCH',
+      headers: {
+        "content-type":"application/json"
+      },
+      body: JSON.stringify({
+        messageIds: selectedMsgs,
+        command: 'read',
+        read: true
+      })
+    })
+    .then(response => response.json())
+    .then(readMessages => {
+      this.setState({
+        messageData: readMessages
+      })
+    })
+  }
+
+
+  onMarkasUnread = (event) =>{
+    let selectedMsgs = this.findSelected()
+    fetch("http://localhost:8082/api/messages", {
+      method: 'PATCH',
+      headers: {
+        "content-type":"application/json"
+      },
+      body: JSON.stringify({
+        messageIds: selectedMsgs,
+        command: 'read',
+        read: false
+      })
+    })
+    .then(response => response.json())
+    .then(readMessages => {
+      this.setState({
+        messageData: readMessages
+      })
+    })
+  }
+
   render() {
 
     return (
@@ -131,6 +184,9 @@ class App extends Component {
         composeClicked = {this.state.composeClicked}
         composeToggle = {this.composeToggle}
         onDelete= {this.onDelete}
+        onMarkAsRead= {this.onMarkAsRead}
+        onMarkasUnread={this.onMarkasUnread}
+        messageData={this.state.messageData}
         />
         {this.composeMessage()}
         <MessageList toggleStarred={this.toggleStarred}
