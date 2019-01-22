@@ -108,7 +108,6 @@ class App extends Component {
       }
       else{ return acc}
     }, []);
-      console.log("selected messages",messages)
       return messages
   }
 
