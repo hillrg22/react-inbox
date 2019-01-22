@@ -7,9 +7,9 @@ const Message = ({id, labels, read, selected, starred, subject, toggleStarred, m
 
 
 
-const labelSpans = labels.map((label, i) =>{
-  return <span key={i} className="label label-warning">{label}</span>
-})
+  const labelSpans = labels.map((label, i) =>{
+    return <span key={i} className="label label-warning">{label}</span>
+  })
 
   return(
   <div className={readClasses + selectedClass} >
@@ -23,7 +23,7 @@ const labelSpans = labels.map((label, i) =>{
         </div>
       </div>
     </div>
-    <div classname="col-xs-11" onClick={(e)=>msgReadToggle(e,id)}>
+    <div className="col-xs-11" onClick={(e)=>msgReadToggle(e,id)}>
       {labelSpans}
       <a href="#">{subject}</a>
     </div>

@@ -100,7 +100,7 @@ class App extends Component {
   }
 
   findSelected = () => {
-    console.log("findselected",this.state.messageData)
+
     let messages = this.state.messageData.reduce((acc,current) =>{
       if(current.selected){
         acc.push(current.id)
